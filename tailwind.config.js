@@ -17,6 +17,7 @@ export default {
       },
       letterSpacing: {
         "widest-2": "0.2em",
+        "widest-3": "0.3em",
       },
       spacing: {
         20: "4.8rem",
@@ -25,14 +26,30 @@ export default {
       },
       borderRadius: {
         "4xl": "2.5rem",
-        "5xl": "3.5rem",
+        "5xl": "5.5rem",
         "9xl": "9.5rem",
+        "12xl": "12.5rem",
+        "14xl": "14.5rem",
+        "16xl": "16.5rem",
+        "18xl": "18.5rem",
       },
       margin: {
         18: "4.2rem",
       },
       maxWidth: {
-        xxs: "12.5rem",
+        "2xs": "17rem",
+        "4xs": "12.5rem",
+        "8xl": "85rem",
+        "9xl": "90rem",
+      },
+      fontSize: {
+        "5xl": "3.5rem",
+        "11xl": "11.5rem",
+        "12xl": "12.5rem",
+        "14xl": "14.5rem",
+        "15xl": "15.5rem",
+        "16xl": "16.5rem",
+        "18xl": "18.5rem",
       },
     },
   },

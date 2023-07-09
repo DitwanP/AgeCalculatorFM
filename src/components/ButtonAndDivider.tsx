@@ -5,25 +5,37 @@ import { validateInput } from "../utility/ValidateInput";
 
 const ButtonAndDivider = (props: ButtonAndDividerPropsInterface) => {
   const handleSubmit = () => {
-    const hasErrors: boolean = validateInput(
-      props.stateSetter,
-      props.formState
-    );
-    console.log("Is valid:", hasErrors);
+    const hasErrors = validateInput(props.stateSetter, props.formState);
+
     if (!hasErrors) {
-      const birthday = props.formState;
-      convertToAge(birthday, props.setAge);
+      const age = convertToAge(props.formState);
+      props.setAge({
+        yearsOld: age.years,
+        monthsOld: age.months,
+        daysOld: age.days,
+      });
+    } else {
+      props.setAge({
+        yearsOld: "",
+        monthsOld: "",
+        daysOld: "",
+      });
     }
   };
 
   return (
-    <div className="relative my-12 flex w-full flex-col items-center justify-center">
+    <div className="relative my-12 flex w-full flex-col items-center justify-center md:my-8 md:items-end">
       <button
         onClick={handleSubmit}
         className="relative z-10 flex h-23 w-23 items-center justify-center 
-        rounded-full bg-purple hover:cursor-pointer hover:bg-off-black"
+                  rounded-full bg-purple hover:cursor-pointer hover:bg-off-black
+                  md:h-44 md:w-44"
       >
-        <img src={ArrowIcon} alt="Down Arrow" className="h-11 w-11" />
+        <img
+          src={ArrowIcon}
+          alt="Down Arrow"
+          className="h-11 w-11 md:h-20 md:w-20"
+        />
       </button>
       <div className="absolute h-1 w-full border-t border-light-grey"></div>
     </div>

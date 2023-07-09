@@ -1,15 +1,19 @@
-import { ConvertedAgeInterface, FormDataInterface } from "./Interfaces";
+import { FormDataInterface } from "./Interfaces";
+import moment from "moment";
 
-export const convertToAge = (
-  birthday: FormDataInterface,
-  setAge: (value: ConvertedAgeInterface) => void
-) => {
-  const day = Number(birthday.day.value);
-  const month = Number(birthday.month.value) - 1;
-  const year = Number(birthday.year.value);
+export const convertToAge = (formInfo: FormDataInterface) => {
+  const day = Number(formInfo.day.value);
+  const month = Number(formInfo.month.value) - 1; //js months are 0 indexed so - 1 fixes off by one
+  const year = Number(formInfo.year.value);
 
-  const date = new Date(year, month, day);
-  console.log("Input data:", birthday);
-  console.log("New 'Date' object: ", date);
-  console.log("New 'Date'.time: ", date.getTime());
+  const birthDate = new Date(year, month, day).getTime();
+  const currentDate = new Date().getTime();
+  const timeBetweenDatesInMs = currentDate - birthDate;
+  const duration = moment.duration(timeBetweenDatesInMs);
+
+  return {
+    years: String(duration.years()),
+    months: String(duration.months()),
+    days: String(duration.days()),
+  };
 };

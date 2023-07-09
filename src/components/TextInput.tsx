@@ -18,7 +18,7 @@ const TextInput = (props: InputPropsInterface) => {
     <div className="flex flex-col overflow-x-hidden">
       <label
         htmlFor={props.label}
-        className={`text mb-2 text-xl tracking-widest-2 
+        className={`text mb-2 text-xl tracking-widest-2 md:text-2xl md:tracking-widest-3
         ${props.hasError ? "text-light-red" : "text-smokey-grey "}`}
       >
         {props.label.toUpperCase()}
@@ -27,12 +27,12 @@ const TextInput = (props: InputPropsInterface) => {
         type="number"
         id={props.label}
         onChange={handleInputChange}
-        // onBlur={props.handleReset}
         placeholder={props.placeholder.toUpperCase()}
         aria-placeholder={props.placeholder.toUpperCase()}
-        className={`mb-3 h-21 max-w-xxs translate-y-1 rounded-xl border border-light-grey px-6 text-4xl 
-        text-off-black placeholder:-translate-y-1 placeholder:pl-3 placeholder:text-3xl 
-        placeholder:text-light-grey focus-visible:outline-2 
+        className={`mb-3 h-21 max-w-4xs translate-y-1 rounded-xl border border-light-grey px-6 text-4xl 
+        text-off-black placeholder:-translate-y-1 placeholder:pl-3 placeholder:text-2xl 
+        placeholder:text-light-grey focus-visible:outline-2 md:h-32 md:max-w-2xs md:pl-8 md:pr-4 md:text-5xl
+        md:placeholder:-translate-y-0 md:placeholder:text-5xl
         ${
           props.hasError
             ? "border-light-red focus-visible:outline-light-red"
@@ -40,18 +40,18 @@ const TextInput = (props: InputPropsInterface) => {
         }`}
       />
       {props.errorType === "empty" && (
-        <span className="max-w-xxs font-normal italic text-light-red">
+        <span className="max-w-xxs font-normal italic text-light-red md:max-w-2xs md:text-2xl">
           This field is required
         </span>
       )}
       {props.label !== "year" && props.errorType === "invalid" && (
-        <span className="max-w-xxs font-normal italic text-light-red">
+        <span className="max-w-xxs font-normal italic text-light-red md:max-w-2xs md:text-2xl">
           Must be a valid {props.label}
         </span>
       )}
       {props.errorType !== "empty" && props.invalidYear && (
-        <span className="max-w-xxs font-normal italic text-light-red">
-          Must be a valid year in the past
+        <span className="max-w-xxs font-normal italic text-light-red md:max-w-2xs md:text-2xl">
+          Must be in the past
         </span>
       )}
     </div>

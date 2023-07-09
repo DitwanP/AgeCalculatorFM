@@ -4,7 +4,7 @@ import { FormInputsPopsInterface } from "../utility/Interfaces";
 
 const FormInputs = (props: FormInputsPopsInterface) => {
   return (
-    <div className="flex w-full gap-6">
+    <div className="flex w-full gap-6 md:gap-12">
       <TextInput
         label="day"
         placeholder="dd"
