@@ -1,6 +1,6 @@
-import { ConvertedAgeInterface } from "../utility/Interfaces";
+import { ConvertedAgePropsInterface } from "../utility/Interfaces";
 
-const ConvertedAge = (props: ConvertedAgeInterface) => {
+const ConvertedAge = (props: ConvertedAgePropsInterface) => {
   return (
     <div className="flex justify-start gap-4 text-9xl font-extrabold italic">
       <span className="text-purple">{props.value ? props.value : "--"}</span>

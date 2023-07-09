@@ -1,107 +1,77 @@
-import { FormDataInterface } from "./Interfaces";
+import { FormDataInterface, InputFieldInterface } from "./Interfaces";
 import { UnitType } from "./Types";
 
 export const validateInput = (
-  unit: UnitType,
-  currentValue: string,
+  stateSetter: (value: FormDataInterface) => void,
   currentState: FormDataInterface
-): FormDataInterface => {
-  if (currentValue === "") {
-    return {
-      ...currentState,
-      [unit]: {
-        isError: true,
-        errorType: "empty",
-      },
-    };
-  }
+): boolean => {
+  const dayInfo: InputFieldInterface = validateDay(currentState);
+  const monthInfo: InputFieldInterface = validateMonth(currentState);
+  const yearInfo: InputFieldInterface = validateYear(currentState);
+  const newState = { day: dayInfo, month: monthInfo, year: yearInfo };
+  const hasError: boolean =
+    dayInfo.hasError || monthInfo.hasError || yearInfo.hasError;
 
-  switch (unit) {
-    case "day":
-      return validateDay(currentValue, currentState);
-    case "month":
-      return validateMonth(currentValue, currentState);
-    case "year":
-      return validateYear(currentValue, currentState);
-  }
+  stateSetter(newState);
+
+  return hasError;
 };
 
 // Checks that the entered day is between 1 and 31.
-const validateDay = (
-  currentDayValue: string,
-  currentState: FormDataInterface
-): FormDataInterface => {
-  if (Number(currentDayValue) < 1 || Number(currentDayValue) > 31) {
-    return {
-      ...currentState,
-      day: {
-        value: currentDayValue,
-        hasError: true,
-        errorType: "invalid",
-      },
-    };
+const validateDay = (currentState: FormDataInterface): InputFieldInterface => {
+  const dayValue = currentState.day.value;
+
+  if (dayValue === "") {
+    return { value: "", hasError: true, errorType: "empty" };
+  } else if (Number(dayValue) < 1 || Number(dayValue) > 31) {
+    return { value: dayValue, hasError: true, errorType: "invalid" };
   } else {
-    return {
-      ...currentState,
-      day: {
-        value: currentDayValue,
-        hasError: false,
-        errorType: null,
-      },
-    };
+    return { value: dayValue, hasError: false, errorType: null };
   }
 };
 
 // Checks that the entered month is between 1 and 12.
 const validateMonth = (
-  currentMonthValue: string,
   currentState: FormDataInterface
-): FormDataInterface => {
-  if (Number(currentMonthValue) < 1 || Number(currentMonthValue) > 12) {
-    return {
-      ...currentState,
-      month: {
-        value: currentMonthValue,
-        hasError: true,
-        errorType: "invalid",
-      },
-    };
+): InputFieldInterface => {
+  const monthValue = currentState.month.value;
+
+  if (monthValue === "") {
+    return { value: "", hasError: true, errorType: "empty" };
+  } else if (Number(monthValue) < 1 || Number(monthValue) > 12) {
+    return { value: monthValue, hasError: true, errorType: "invalid" };
   } else {
-    return {
-      ...currentState,
-      month: {
-        value: currentMonthValue,
-        hasError: false,
-        errorType: null,
-      },
-    };
+    return { value: monthValue, hasError: false, errorType: null };
   }
 };
 
 // Checks that the entered year is between 1 and the current year.
-const validateYear = (
-  currentYearValue: string,
-  currentState: FormDataInterface
-): FormDataInterface => {
-  let currentYear = new Date().getFullYear();
+const validateYear = (currentState: FormDataInterface): InputFieldInterface => {
+  const currentYear = new Date().getFullYear();
+  const yearValue = currentState.year.value;
 
-  if (Number(currentYearValue) < 1 || Number(currentYearValue) > currentYear) {
-    return {
-      ...currentState,
-      year: {
-        value: currentYearValue,
-        hasError: true,
-        errorType: "invalid",
-      },
-    };
+  if (yearValue === "") {
+    return { value: "", hasError: true, errorType: "empty" };
+  } else if (Number(yearValue) < 1 || Number(yearValue) > currentYear) {
+    return { value: yearValue, hasError: true, errorType: "invalid" };
   } else {
+    return { value: yearValue, hasError: false, errorType: null };
+  }
+};
+
+export const resetInputState = (
+  unit: UnitType,
+  currentValue: string,
+  currentState: FormDataInterface
+) => {
+  const defaultState = { value: "", hasError: false, errorType: null };
+
+  if (currentValue === "") {
     return {
       ...currentState,
-      year: {
-        value: currentYearValue,
-        hasError: false,
-        errorType: null,
-      },
+      [unit]: defaultState,
     };
   }
+
+  return currentState;
 };
