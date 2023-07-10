@@ -7,7 +7,7 @@ export const convertToAge = (formInfo: FormDataInterface) => {
   const year = Number(formInfo.year.value);
 
   const birthDate = new Date(year, month, day);
-  birthDate.setUTCFullYear(0);
+  birthDate.setUTCFullYear(year);
 
   const bdayInMs = birthDate.getTime();
   const currentDate = new Date().getTime();
