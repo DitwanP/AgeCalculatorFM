@@ -21,7 +21,11 @@ const TextInput = ({ formState, ...props }: InputPropsInterface) => {
       <label
         htmlFor={props.label}
         className={`text mb-2 text-xl tracking-widest-2 lg:text-2xl lg:tracking-widest-3
-        ${props.hasError ? "text-light-red" : "text-smokey-grey "}`}
+        ${
+          props.hasError || invalidDateForMonth
+            ? "text-light-red"
+            : "text-smokey-grey "
+        }`}
       >
         {props.label.toUpperCase()}
       </label>
@@ -36,7 +40,7 @@ const TextInput = ({ formState, ...props }: InputPropsInterface) => {
         placeholder:text-light-grey focus-visible:outline-2 lg:h-32 lg:max-w-2xs lg:pl-8 lg:pr-4 lg:text-5xl
         lg:placeholder:-translate-y-0 lg:placeholder:text-5xl
         ${
-          props.hasError
+          props.hasError || invalidDateForMonth
             ? "border-light-red focus-visible:outline-light-red"
             : "focus-visible:outline-purple"
         }`}
