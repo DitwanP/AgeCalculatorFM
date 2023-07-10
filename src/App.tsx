@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="flex h-screen w-full items-center justify-center bg-off-white p-6">
       <div
-        className="w-full max-w-4xl rounded-t-4xl rounded-bl-4xl rounded-br-9xl bg-white px-11 py-23 
-                  shadow-xl md:max-w-9xl md:rounded-br-18xl md:px-23"
+        className="w-full max-w-[425px] rounded-t-4xl rounded-bl-4xl rounded-br-9xl bg-white px-11 py-23 
+                  shadow-xl lg:max-w-9xl lg:rounded-br-18xl lg:px-23"
       >
         <FormInputs formState={formState} stateSetter={setFormState} />
         <ButtonAndDivider

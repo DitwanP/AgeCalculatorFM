@@ -12,8 +12,29 @@ export const validateInput = (
   const hasError: boolean =
     dayInfo.hasError || monthInfo.hasError || yearInfo.hasError;
 
-  stateSetter(newState);
+  const birthdate = new Date(
+    Number(currentState.year.value),
+    Number(currentState.month.value) - 1,
+    Number(currentState.day.value)
+  );
 
+  if (
+    Number(dayInfo.value) > 0 &&
+    Number(dayInfo.value) <= 31 &&
+    birthdate.getDate() !== Number(dayInfo.value)
+  ) {
+    stateSetter({
+      ...newState,
+      day: {
+        ...newState.day,
+        hasError: true,
+        errorType: "noSuchDate",
+      },
+    });
+    return true;
+  }
+
+  stateSetter(newState);
   return hasError;
 };
 
@@ -48,14 +69,16 @@ const validateMonth = (
 // Checks that the entered year is between 1 and the current year.
 const validateYear = (currentState: FormDataInterface): InputFieldInterface => {
   const currentYear = new Date().getFullYear();
-  const yearValue = currentState.year.value;
+  let yearValue: string = currentState.year.value;
 
   if (yearValue === "") {
     return { value: "", hasError: true, errorType: "empty" };
-  } else if (Number(yearValue) < 1 || Number(yearValue) > currentYear) {
-    return { value: yearValue, hasError: true, errorType: "invalid" };
+  }
+
+  if (Number(yearValue) < 0 || Number(yearValue) > currentYear) {
+    return { value: String(yearValue), hasError: true, errorType: "invalid" };
   } else {
-    return { value: yearValue, hasError: false, errorType: null };
+    return { value: String(yearValue), hasError: false, errorType: null };
   }
 };
 

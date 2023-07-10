@@ -15,3 +15,13 @@ body {
   padding: 0px;
   overflow-x: hidden;
 }
+
+.animated-container {
+  line-height: 1;
+}
+
+@media (min-width: 1024px) {
+  .animated-container div:first-of-type {
+    margin-right: -10px;
+  }
+}

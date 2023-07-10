@@ -44,6 +44,7 @@ export default {
       },
       fontSize: {
         "5xl": "3.5rem",
+        "10xl": "9rem",
         "11xl": "11.5rem",
         "12xl": "12.5rem",
         "14xl": "14.5rem",
