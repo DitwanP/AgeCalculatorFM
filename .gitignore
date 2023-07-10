@@ -9,7 +9,6 @@ lerna-debug.log*
 
 age-calculator-challenge-assets
 node_modules
-dist
 dist-ssr
 *.local
 
