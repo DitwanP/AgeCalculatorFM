@@ -34,7 +34,6 @@ const TextInput = ({ formState, ...props }: InputPropsInterface) => {
         id={props.label}
         onChange={handleInputChange}
         placeholder={props.placeholder.toUpperCase()}
-        aria-placeholder={props.placeholder.toUpperCase()}
         className={`mb-3 h-21 max-w-4xs translate-y-1 rounded-xl border border-light-grey px-5 text-4xl 
         text-off-black placeholder:-translate-y-1 placeholder:pl-3 placeholder:text-2xl 
         placeholder:text-light-grey focus-visible:outline-2 lg:h-32 lg:max-w-2xs lg:pl-8 lg:pr-4 lg:text-5xl

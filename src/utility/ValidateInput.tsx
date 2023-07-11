@@ -66,7 +66,7 @@ const validateMonth = (
   }
 };
 
-// Checks that the entered year is between 1 and the current year.
+// Checks that the entered year is between 0 and the current year.
 const validateYear = (currentState: FormDataInterface): InputFieldInterface => {
   const currentYear = new Date().getFullYear();
   let yearValue: string = currentState.year.value;
