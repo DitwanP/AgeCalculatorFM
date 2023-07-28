@@ -53,7 +53,7 @@ Identify core functionality, pieces of the desing that can be broken into smalle
 
 ### What I learned
 
-This project was mainly for the purpose of furthering my knowledge with a few tools. Specifically Vite, and Tailwind.
+This project was mainly for the purpose of introducing me to a few tools that I have been wanting to try out. Specifically Vite, and Tailwind.
 
 ## Author
 
